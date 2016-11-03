@@ -1,0 +1,137 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tattoo</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/font-awesome.css' %}" />
+{#    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>#}
+{#    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>#}
+    <link href="{% static 'main/css/fonts.css'%}" type="text/css" rel="stylesheet" >
+
+</head>
+<body class="bodyContent">
+<div class="content">
+  <div id="header_line">
+      <p id="date">
+        <script>
+            function formatDate(date) {
+              var dd = date.getDate();
+              if (dd < 10) dd = '0' + dd;
+
+              var mm = date.getMonth() + 1;
+              if (mm < 10) mm = '0' + mm;
+
+              var yy = date.getFullYear() % 100;
+              if (yy < 10) yy = '0' + yy;
+
+              return dd + '.' + mm + '.' + yy;
+            }
+
+            var today = new Date();
+            document.write(formatDate(today))
+        </script>
+      </p>
+
+{#      <a class="log_in" href="/login/">Log in</a>#}
+{#      <a class="regist" href="/registration/">Register</a>#}
+
+  </div>
+    <div class="header_bottom">
+      <div class="logo">
+          <a href="/home/"><h1>The Tattooed Ukraine</h1></a>
+          <a href="/home/"><div class="logo_img" > </div></a>
+      </div>
+
+      <div class="tattoo_photo">
+          <a href="https://vk.com/wowtattoo" title="" target="_blank">
+              <div class="tattoo_photo1"><img src="{% static 'main/images/photo_tatto1.jpg' %}"></div>
+          </a>
+          <a href="https://vk.com/inkartist" title="" target="_blank" >
+              <div class="tattoo_photo2"><img src="{% static 'main/images/photo_tatto2.jpg' %}"></div>
+          </a>
+          <a href="https://vk.com/tattoodraw" title="" target="_blank">
+              <div class="tattoo_photo3"><img src="{% static 'main/images/photo_tatto3.jpg' %}"></div>
+          </a>
+
+      </div>
+
+  </div>
+
+                <div class="container navigation">
+                <div class="row col-lg-12 ">
+                    <div class="navbar navbar-inverse">
+                        <div class="container">
+                            <div class="navbar-header ">
+                                <a class="navbar-brand"  href="#"><h2 style=" margin-top: -5px ">The Tattooed Ukraine</h2></a>
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#responsive-menu">
+                                  <span class="sr-only">Open menu</span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                </button>
+                        </div>
+                        <div class="collapse navbar-collapse navigationText " id="responsive-menu">
+                            <ul class="nav navbar-nav navTextLi">
+                                <li style="margin-left: 30px" class="fa fa-home"></li>
+                                <li class="navTextLi"><a href="/home/">Main</a></li>
+                                <li class="fa fa-commenting"></li>
+                                <li><a href="/blog/">Blog</a></li>
+                                <li class="fa fa-user"></li>
+                                <li><a href="/masters/">Masters</a></li>
+                                <li class="fa fa-shopping-bag"></li>
+                                <li><a href="/shop/">Shop</a></li>
+                                <li class="fa fa-gears"></li>
+                                <li><a href="/home/">Builders</a></li>
+                            </ul>
+{#                            <form class="navbar-form navbar-right hidden-sm" action="">#}
+{#                              <div class="form-group">#}
+{#                                <input class="form-control" type="text" placeholder="E-mail" value="">#}
+{##}
+{#                              </div>#}
+{#                              <div class="form-group">#}
+{#                                <input class="form-control" type="password" placeholder="Password" value="">#}
+{#                              </div>#}
+{#                                <button type="submit" class="btn btn-primary">#}
+{#                                    <i class="fa fa-sign-in"> Войти</i>#}
+{#                                </button>#}
+{#                            </form>#}
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <div class="underNavLine"></div>
+    <div class="contentContainer ">
+    {% block login %}
+        <form action="/auth/login/" method="post">
+            {% csrf_token %}
+            <label for="username" >Name user</label>
+            <input type="text" name="username" id="username">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            {% if login_error %}
+                <label class="error">{{ login_error }}</label>
+            {% endif %}
+            <input type="submit" class="button" value="Sing in">
+        </form>
+    {% endblock %}
+
+    </div>
+
+
+
+
+   </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>#}
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'main/js/bootstrap.js' %}"></script>
+    <script src="{% static 'main/js/salvattore.min.js' %}"></script>
+
+
+</body>
+</html>
